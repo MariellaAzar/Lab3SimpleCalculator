@@ -1,19 +1,35 @@
 package com.example.lab3simplecalculator;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
+import android.widget.EditText;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.view.View;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
     private enum Operator {none, add, minus, multiply, divide}
     private double data1 = 0, data2 = 0;
-    private Operator opptr = Operator.none;
+    private Operator optr = Operator.none;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
 
     public void btn00Click(View view){
         TextView eText = (TextView)findViewById(R.id.resultEdit);
@@ -64,33 +80,33 @@ public class MainActivity extends AppCompatActivity {
     public void btnMinusClick(View view) {
         optr = Operator.minus;
         TextView eText = (TextView) findViewById(R.id.resultEdit);
-        data1 = Double.parseDouble(eText.text().toString());
+        data1 = Double.parseDouble(eText.getText().toString());
         eText.setText("");
     }
     public void btnMultiplyClick(View view) {
         optr = Operator.multiply;
         TextView eText = (TextView) findViewById(R.id.resultEdit);
-        data1 = Double.parseDouble(eText.text().toString());
+        data1 = Double.parseDouble(eText.getText().toString());
         eText.setText("");
     }
     public void btnDivideClick(View view) {
         optr = Operator.divide;
         TextView eText = (TextView) findViewById(R.id.resultEdit);
-        data1 = Double.parseDouble(eText.text().toString());
+        data1 = Double.parseDouble(eText.getText().toString());
         eText.setText("");
     }
-    public void btnClearClick(View view) {;
+    public void btnClearClick(View view) {
         TextView eText = (TextView) findViewById(R.id.resultEdit);
         eText.setText("");
     }
-    public void btnDDotClick(View view) {
+    public void btnDotClick(View view) {
         TextView eText = (TextView) findViewById(R.id.resultEdit);
-        eText.setText(eText.getText()+".");
+        eText.setText(eText.getText() +".");
     }
 
     public void btnResultClick(View view) {
         if (optr != Operator.none){
-            TextView eText = (TextView) findViewById(R.id.resultEdit);
+            TextView eText = (TextView)findViewById(R.id.resultEdit);
             data2 = Double.parseDouble(eText.getText().toString());
             double result = 0;
             if (optr == Operator.add){
@@ -119,21 +135,61 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+    public void onClickNumericalButton(View view){
+        int pressID = view.getId();
+        private boolean requiresCleaning = false;
+        private Operator opp = Operator.none;
 
+        TextView curText = (TextView)findViewById(R.id.resultEdit);
 
+        if (opp == Operator.eq){
+            opp = Operator.name;
+            curText.setText("");
+        }
 
+        if (requiresCleaning){
+            requiresCleaning = false;
+            curText.setText("");
+        }
 
-
-
-                @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        switch (pressID){
+            case R.id.button00:
+                curText.setText(curText.getText() + "0");
+                break;
+            case R.id.button01:
+                curText.setText(curText.getText() + "1");
+                break;
+            case R.id.button02:
+                curText.setText(curText.getText() + "2");
+                break;
+            case R.id.button03:
+                curText.setText(curText.getText() + "3");
+                break;
+            case R.id.button04:
+                curText.setText(curText.getText() + "4");
+                break;
+            case R.id.button05:
+                curText.setText(curText.getText() + "5");
+                break;
+            case R.id.button06:
+                curText.setText(curText.getText() + "6");
+                break;
+            case R.id.button07:
+                curText.setText(curText.getText() + "7");
+                break;
+            case R.id.button08:
+                curText.setText(curText.getText() + "8");
+                break;
+            case R.id.button09:
+                curText.setText(curText.getText() + "9");
+                break;
+        }
     }
+
+
+
+
+
+
+
 }
