@@ -10,14 +10,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.view.View;
+import com.example.lab3simplecalculator.R;
 
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private enum Operator {none, add, minus, multiply, divide}
+    private enum Operator {none, add, minus, multiply, divide, eq}
     private double data1 = 0, data2 = 0;
     private Operator optr = Operator.none;
+
+    private boolean requiresCleaning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,81 +35,81 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn00Click(View view){
-        TextView eText = (TextView)findViewById(R.id.resultEdit);
-        eText.setText(eText.getText()+"0");
+        TextView eText = (TextView)findViewById(R.id.resultText);
+        eText.setText(eText.getText().toString() +"0");
     }
     public void btn01Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
-        eText.setText(eText.getText() + "1");
+        TextView eText = (TextView) findViewById(R.id.resultText);
+        eText.setText(eText.getText().toString() + "1");
     }
     public void btn02Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
-        eText.setText(eText.getText() + "2");
+        TextView eText = (TextView) findViewById(R.id.resultText);
+        eText.setText(eText.getText().toString() + "2");
     }
     public void btn03Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
-        eText.setText(eText.getText() + "3");
+        TextView eText = (TextView) findViewById(R.id.resultText);
+        eText.setText(eText.getText().toString() + "3");
     }
     public void btn04Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         eText.setText(eText.getText() + "4");
     }
     public void btn05Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         eText.setText(eText.getText() + "5");
     }
     public void btn06Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         eText.setText(eText.getText() + "6");
     }
     public void btn07Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         eText.setText(eText.getText() + "7");
     }
     public void btn08Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         eText.setText(eText.getText() + "8");
     }
     public void btn09Click(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         eText.setText(eText.getText() + "9");
     }
     public void btnAddClick(View view) {
         optr = Operator.add;
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
-        data1 = Double.parseDouble(eText.text().toString());
+        TextView eText = (TextView) findViewById(R.id.resultText);
+        data1 = Double.parseDouble(eText.getText().toString());
         eText.setText("");
     }
     public void btnMinusClick(View view) {
         optr = Operator.minus;
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         data1 = Double.parseDouble(eText.getText().toString());
         eText.setText("");
     }
     public void btnMultiplyClick(View view) {
         optr = Operator.multiply;
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         data1 = Double.parseDouble(eText.getText().toString());
         eText.setText("");
     }
     public void btnDivideClick(View view) {
         optr = Operator.divide;
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         data1 = Double.parseDouble(eText.getText().toString());
         eText.setText("");
     }
     public void btnClearClick(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
+        TextView eText = (TextView) findViewById(R.id.resultText);
         eText.setText("");
     }
     public void btnDotClick(View view) {
-        TextView eText = (TextView) findViewById(R.id.resultEdit);
-        eText.setText(eText.getText() +".");
+        TextView eText = (TextView) findViewById(R.id.resultText);
+        eText.setText(eText.getText().toString() + ".");
     }
 
     public void btnResultClick(View view) {
         if (optr != Operator.none){
-            TextView eText = (TextView)findViewById(R.id.resultEdit);
+            TextView eText = (TextView)findViewById(R.id.resultText);
             data2 = Double.parseDouble(eText.getText().toString());
             double result = 0;
             if (optr == Operator.add){
@@ -137,13 +140,13 @@ public class MainActivity extends AppCompatActivity {
     }
     public void onClickNumericalButton(View view){
         int pressID = view.getId();
-        private boolean requiresCleaning = false;
-        private Operator opp = Operator.none;
+        boolean requiresCleaning = false;
+        Operator opp = Operator.none;
 
-        TextView curText = (TextView)findViewById(R.id.resultEdit);
+        TextView curText = (TextView)findViewById(R.id.resultText);
 
         if (opp == Operator.eq){
-            opp = Operator.name;
+            opp = Operator.none;
             curText.setText("");
         }
 
